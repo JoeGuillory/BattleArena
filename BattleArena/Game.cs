@@ -69,16 +69,11 @@ namespace BattleArena
         }
         private void Update()
         {
-            
-           if (GetInput("Would you like to attack or heal", "Attack","Heal") == 1)
-           {
-                player.Attack(enemy);
+            // Need to let player attack
+            // maybe every 2 turns lets player continue or select to heal 
+            // add a way to add a item
 
-           }
-           else
-           {
-                player.Heal(10);
-           }
+         
 
         }
         private void End()
