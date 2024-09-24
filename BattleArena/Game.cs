@@ -70,8 +70,21 @@ namespace BattleArena
         private void Update()
         {
             // Need to let player attack
-            // maybe every 2 turns lets player continue or select to heal 
+            // player pick what to do 3 times. then plays it out.
             // add a way to add a item
+            AttackRequest(player, enemy);
+            player.PrintStats();
+            Console.WriteLine();
+            enemy.PrintStats();
+            Console.ReadKey();
+            if(enemy.Health <= 0)
+            {
+                _gameOver = true;
+            }
+            else if (player.Health <= 0)
+            {
+                _gameOver = true;  
+            }
 
          
 
@@ -92,6 +105,43 @@ namespace BattleArena
                 Update();
             }
             End();
+
+        }
+
+        private void AttackRequest(Character player, Character enemy)
+        {
+            Console.WriteLine("Choose three times.");
+            int attack1 = GetInput("Do you want to Attack or Heal", "Attack", "Heal");
+            if (attack1 == 1)
+            {
+                player.Attack(enemy);
+            }
+            else if (attack1 == 2)
+            {
+                player.Heal(5);
+            }
+            int attack2 = GetInput("Next", "Attack", "Heal");
+            if (attack2 == 1)
+            {
+                player.Attack(enemy);
+            }
+            else if (attack2 == 2)
+            {
+                player.Heal(5);
+            }
+            int attack3 = GetInput("Next", "Attack", "Heal");
+            if (attack3 == 1)
+            {
+                player.Attack(enemy);
+            }
+            else if (attack3 == 2)
+            {
+                player.Heal(5);
+            }
+
+
+
+
 
         }
     }
