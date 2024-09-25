@@ -12,8 +12,8 @@ namespace BattleArena
     {
 
         private bool _gameOver = false;
-        Character player;
-        Character enemy;
+        Player player;
+        Enemy enemy;
 
         int GetInput(string description, string option1, string option2)
         {
@@ -60,8 +60,8 @@ namespace BattleArena
         private void Start()
         {
             
-            player = new Character(name: "Player", maxHealth: 100, attackPower: 10, defensePower: 5);
-            enemy = new Character(name: "Enemy", maxHealth: 100, attackPower: 9, defensePower: 5);
+            player = new Player(name: "Bob", maxHealth: 100, attackPower: 10, defensePower: 5, gold: 10);
+            enemy = new Enemy(name: "Enemy", maxHealth: 100, attackPower: 9, defensePower: 5,gold: 10);
             player.PrintStats();
             Console.WriteLine();
             enemy.PrintStats();
@@ -108,7 +108,7 @@ namespace BattleArena
 
         }
 
-        private void AttackRequest(Character player, Character enemy)
+        private void AttackRequest(Player player, Enemy enemy)
         {
             Console.WriteLine("Choose three times.");
             int attack1 = GetInput("Do you want to Attack or Heal", "Attack", "Heal");
@@ -138,7 +138,17 @@ namespace BattleArena
             {
                 player.Heal(5);
             }
-
+            for(int i = 0; i < 3; i++)
+            {
+                player.PrintStats();
+                Console.WriteLine();
+                enemy.RandomAction(player);
+                enemy.PrintStats();
+                Console.ReadKey();
+                Console.Clear();
+                
+            }
+            
 
 
 
