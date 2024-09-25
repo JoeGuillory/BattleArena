@@ -11,21 +11,41 @@ namespace BattleArena
         private string _name = "Item";
         private float _power = 0;
         private float _armor = 0;
+        private float _maxuses = 3;
+        private float _uses = 0; 
         private int _value = 0;
 
 
 
-        public string Name { get => _name; set => _name = value; }
-        public float Power { get => _power; set => _power = value; }
-        public float Armor { get => _armor; set => _armor = value; }
-        public int Value { get => _value; set => _value = value; }
+        public string Name { get => _name; }
+        public float Power { get => _power; }
+        public float Armor { get => _armor; }
+        public int Value { get => _value; }
+        public float Uses
+        {
+            get
+            {
+                return _uses;
+            }
+            set
+            {
+                _uses = Math.Clamp(value, 0, _maxuses);
+            }
+
+        }
 
 
-        public Item(string name,float power,float armor,int value)
+        public Item()
+        {
+
+        }
+        public Item(string name,float power,float armor,float maxuses,int value)
         {
             name = Name;
             power = Power;
             armor = Armor;
+            maxuses = _maxuses;
+            Uses = _maxuses;
             value = Value;
 
         }
