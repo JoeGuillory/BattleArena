@@ -13,7 +13,7 @@ namespace BattleArena
 
         private bool _gameOver = false;
         Player player;
-        Enemy enemy;
+        Enemy goblin;
         
         /// <summary>
         /// Gets input from the player
@@ -64,8 +64,8 @@ namespace BattleArena
         private void Start()
         {
             
-            player = new Player(name: "Bob", maxHealth: 100, attackPower: 45, defensePower: 5, gold: 10);
-            enemy = new Enemy(name: "Enemy", maxHealth: 100, attackPower: 9, defensePower: 5,gold: 10);
+            player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
+            goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             player.PrintStats();
             Console.WriteLine();
             enemy.PrintStats();
@@ -74,9 +74,9 @@ namespace BattleArena
         private void Update()
         {
             
-            AttackRequest(player, enemy);
+            AttackRequest(player, goblin);
             Console.ReadKey();
-            if(enemy.Health <= 0)
+            if(goblin.Health <= 0)
             {
                 _gameOver = true;
             }
