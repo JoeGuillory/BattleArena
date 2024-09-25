@@ -19,6 +19,11 @@ namespace BattleArena
             player.Health -= damage;
             return damage;
         }
+        public void Defeated(Player player)
+        {
+            player.Gold += Gold;
+
+        }
         public void RandomAction(Player player)
         {
 
@@ -33,7 +38,8 @@ namespace BattleArena
             {
                 Heal(10);
             }
-
+           
+           
 
 
         }

@@ -14,7 +14,11 @@ namespace BattleArena
         private bool _gameOver = false;
         Player player;
         Enemy enemy;
-
+        
+        /// <summary>
+        /// Gets input from the player
+        /// </summary>
+        
         int GetInput(string description, string option1, string option2)
         {
             ConsoleKeyInfo key;
@@ -60,7 +64,7 @@ namespace BattleArena
         private void Start()
         {
             
-            player = new Player(name: "Bob", maxHealth: 100, attackPower: 10, defensePower: 5, gold: 10);
+            player = new Player(name: "Bob", maxHealth: 100, attackPower: 45, defensePower: 5, gold: 10);
             enemy = new Enemy(name: "Enemy", maxHealth: 100, attackPower: 9, defensePower: 5,gold: 10);
             player.PrintStats();
             Console.WriteLine();
@@ -71,9 +75,6 @@ namespace BattleArena
         {
             
             AttackRequest(player, enemy);
-            player.PrintStats();
-            Console.WriteLine();
-            enemy.PrintStats();
             Console.ReadKey();
             if(enemy.Health <= 0)
             {
@@ -105,7 +106,9 @@ namespace BattleArena
             End();
 
         }
-
+        /// <summary>
+        /// Battle Loop for the main game
+        /// </summary>
         private void AttackRequest(Player player, Enemy enemy)
         {
             Console.WriteLine("Choose three times.");
@@ -136,17 +139,36 @@ namespace BattleArena
             {
                 player.Heal(5);
             }
-            for(int i = 0; i < 3; i++)
+            // After Battle Stats
+            player.PrintStats();
+            Console.WriteLine();
+            enemy.PrintStats();
+            Console.ReadKey();
+            // Enemy fights back
+            if (enemy.Health != 0)
             {
-                player.PrintStats();
-                Console.WriteLine();
-                enemy.RandomAction(player);
-                enemy.PrintStats();
-                Console.ReadKey();
-                Console.Clear();
                 
+                for(int i = 0; i < 3; i++)
+                {
+                    Console.Clear();
+                    player.PrintStats();
+                    Console.WriteLine();
+                    enemy.RandomAction(player);
+                    enemy.PrintStats();
+                    Console.ReadKey();
+                
+                
+                }
             }
-            
+            else if (enemy.Health == 0)
+            {
+                Console.Clear();
+                enemy.Defeated(player);
+                Console.WriteLine();
+                Console.WriteLine("You got " + enemy.Gold + " Gold");
+                Console.WriteLine();
+                player.PrintStats();
+            }
 
 
 

@@ -32,7 +32,7 @@ namespace BattleArena
         public float DefensePower { get { return _defensePower; } }
         public string Name { get { return _name; } }
         public float MaxHealth { get { return _maxHealth; } }
-        public int Gold { get { return _gold; } }
+        public int Gold { get { return _gold; } set { _gold = Math.Max(0, value); } }
         public Character()
         {
 
