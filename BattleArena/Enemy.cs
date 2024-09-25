@@ -24,12 +24,12 @@ namespace BattleArena
 
             Random random = new Random();
 
-            int action = random.Next(1, 2);
-            if (action == 1)
+            int action = random.Next(1, 11);
+            if (action <= 6)
             {
                 Attack(player);
             }
-            if (action == 2)
+            if (action  >= 7)
             {
                 Heal(10);
             }

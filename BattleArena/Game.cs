@@ -69,9 +69,7 @@ namespace BattleArena
         }
         private void Update()
         {
-            // Need to let player attack
-            // player pick what to do 3 times. then plays it out.
-            // add a way to add a item
+            
             AttackRequest(player, enemy);
             player.PrintStats();
             Console.WriteLine();
