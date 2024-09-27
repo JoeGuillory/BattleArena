@@ -16,7 +16,7 @@ namespace BattleArena
         Enemy goblin;
         Enemy orc;
         Enemy dragon;
-        Item[] inventory = new Item[1];
+        Item[] inventory = new Item[2];
         
         /// <summary>
         /// Gets input from the player
@@ -66,8 +66,10 @@ namespace BattleArena
         
         private void Start()
         {
-            Wand icewand = new Wand("Ice wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
+            Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
+            Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Shoots a fireball at enemy");
             inventory[0] = icewand;
+            inventory[1] = firewand;
 
             player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);

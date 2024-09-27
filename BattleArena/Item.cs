@@ -44,13 +44,13 @@ namespace BattleArena
         }
         public Item(string name,float power,float armor,float maxuses,int value,string discritpion)
         {
-            name = Name;
-            power = Power;
-            armor = Armor;
-            maxuses = _maxuses;
-            Uses = _maxuses;
-            value = Value;
-            discritpion = _discription;
+            _name = name;
+            _power = power;
+            _armor = armor;
+            _maxuses = maxuses;
+            _uses = maxuses;
+            _value = value;
+            _discription = discritpion;
 
         }
 
