@@ -52,6 +52,8 @@ namespace BattleArena
             _value = value;
             _discription = discritpion;
 
+           
+
         }
 
         public abstract void ItemAffect();
