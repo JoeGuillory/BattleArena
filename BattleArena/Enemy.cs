@@ -19,7 +19,7 @@ namespace BattleArena
             player.Health -= damage;
             return damage;
         }
-        public void Defeated(Player player)
+        public void Defeated(ref Player player)
         {
             player.Gold += Gold;
 
@@ -36,7 +36,7 @@ namespace BattleArena
             }
             if (action  >= 7)
             {
-                Heal(10);
+                Heal(3);
             }
            
            

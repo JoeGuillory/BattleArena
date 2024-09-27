@@ -12,12 +12,27 @@ namespace BattleArena
         {
 
         }
-
+      
+       
+        
+        
+ 
         public float Attack(Enemy enemy)
         {
             float damage = Math.Max(0, AttackPower - enemy.DefensePower);
             enemy.Health -= damage;
             return damage;
+        }
+
+        public void PrintInventory()
+        {
+            for (int i =0; i < 3; i++)
+            {
+                Console.WriteLine(i + ". " + "Iteam: " );
+                
+
+            }
+
         }
 
     }
