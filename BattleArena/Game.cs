@@ -16,6 +16,7 @@ namespace BattleArena
         Enemy goblin;
         Enemy orc;
         Enemy dragon;
+        Item[] inventory = new Item[1];
         
         /// <summary>
         /// Gets input from the player
@@ -65,14 +66,20 @@ namespace BattleArena
         
         private void Start()
         {
-            
+            Wand icewand = new Wand("Ice wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
+            inventory[0] = icewand;
+
             player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             orc = new Enemy(name: "Orc", maxHealth: 25, attackPower: 6, defensePower: 2,gold: 20);
             dragon = new Enemy(name: "Dragon", maxHealth: 200, attackPower: 20, defensePower: 10,gold: 1000);
             Console.WriteLine("Welcome to the Arena");
-
             player.PrintStats();
+            Console.WriteLine();
+            
+            player.PrintInventory(inventory);
+           
+            Console.ReadKey();
             Console.WriteLine();
             Console.ReadKey();
            
@@ -119,7 +126,7 @@ namespace BattleArena
         {
             bool dead = false;
 
-            Console.WriteLine("You oppenent is a " + enemy.Name);
+            Console.WriteLine("Your opponent is a " + enemy.Name);
             Console.WriteLine();
             enemy.PrintStats();
             Console.ReadKey();
@@ -197,7 +204,7 @@ namespace BattleArena
         }
         private void BattleResults(ref Player player, Enemy enemy)
         {
-            Console.WriteLine("Congradulation on defeating " + enemy.Name);
+            Console.WriteLine("Congratulations on defeating " + enemy.Name);
             Console.WriteLine();
             enemy.Defeated(ref player);
             Console.WriteLine("You got " + enemy.Gold + " Gold");

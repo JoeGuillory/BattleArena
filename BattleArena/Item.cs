@@ -14,6 +14,7 @@ namespace BattleArena
         private float _maxuses = 3;
         private float _uses = 0; 
         private int _value = 0;
+        private string _discription = "";
 
 
 
@@ -21,6 +22,8 @@ namespace BattleArena
         public float Power { get => _power; }
         public float Armor { get => _armor; }
         public int Value { get => _value; }
+        public string Discription { get => _discription; set => _discription = value; }
+
         public float Uses
         {
             get
@@ -39,7 +42,7 @@ namespace BattleArena
         {
 
         }
-        public Item(string name,float power,float armor,float maxuses,int value)
+        public Item(string name,float power,float armor,float maxuses,int value,string discritpion)
         {
             name = Name;
             power = Power;
@@ -47,6 +50,7 @@ namespace BattleArena
             maxuses = _maxuses;
             Uses = _maxuses;
             value = Value;
+            discritpion = _discription;
 
         }
 

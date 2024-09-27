@@ -13,8 +13,26 @@ namespace BattleArena
 
         }
       
+        public void Inventory(Item[] inventory)
+        {
+
+           
+
+        }
        
-        
+        public void PrintInventory(Item[] inventory)
+        {
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                Console.WriteLine(inventory[i].Name);
+                Console.WriteLine(inventory[i].Discription);
+                
+
+
+            }
+
+
+        }
         
  
         public float Attack(Enemy enemy)
@@ -24,16 +42,7 @@ namespace BattleArena
             return damage;
         }
 
-        public void PrintInventory()
-        {
-            for (int i =0; i < 3; i++)
-            {
-                Console.WriteLine(i + ". " + "Iteam: " );
-                
-
-            }
-
-        }
+      
 
     }
 }
