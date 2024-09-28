@@ -16,12 +16,12 @@ namespace BattleArena
         Enemy goblin;
         Enemy orc;
         Enemy dragon;
-        Item[] inventory = new Item[2];
+        Item[] maininventory = new Item[2];
+        Item[] playerinventory = new Item[2];
         
         /// <summary>
-        /// Gets input from the player
+        /// Gets input for a 2 choice question
         /// </summary>
-        
         int GetInput(string description, string option1, string option2)
         {
             ConsoleKeyInfo key;
@@ -61,16 +61,60 @@ namespace BattleArena
             Console.WriteLine();
             return inputRecieved;
         }
-        
-     
-        
+        /// <summary>
+        /// Gets input for a 3 choice question
+        /// </summary>
+        int GetInput(string description, string option1, string option2 , string option3)
+        {
+            ConsoleKeyInfo key;
+            int inputRecieved = 0;
+            while (inputRecieved != 1 && inputRecieved != 2)
+            {
+                // Print option
+                Console.Clear();
+                Console.WriteLine(description);
+                Console.WriteLine("1. " + option1);
+                Console.WriteLine("2. " + option2);
+                Console.Write("> ");
+                // Get input from player
+                key = Console.ReadKey();
+
+                // if first option
+                if (key.KeyChar == '1')
+                {
+                    // set input recieved to 1
+                    inputRecieved = 1;
+                }
+                // otherwise if second option
+                else if (key.KeyChar == '2')
+                {
+                    // set input recieved to 2
+                    inputRecieved = 2;
+                }
+                else if (key.KeyChar == '3')
+                {
+                    inputRecieved = 3;
+                }
+                // Else neither
+                else
+                {
+                    // Display error message
+                    Console.WriteLine("\nInvalid Input");
+                    Console.ReadKey();
+                }
+
+            }
+            Console.WriteLine();
+            return inputRecieved;
+        }
+
+
+
         private void Start()
         {
             Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
             Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Shoots a fireball at enemy");
-            inventory[0] = icewand;
-            inventory[1] = firewand;
-
+           
             player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             orc = new Enemy(name: "Orc", maxHealth: 25, attackPower: 6, defensePower: 2,gold: 20);
@@ -79,7 +123,7 @@ namespace BattleArena
             player.PrintStats();
             Console.WriteLine();
             
-            player.PrintInventory(inventory);
+            player.PrintInventory(playerinventory);
            
             Console.ReadKey();
             Console.WriteLine();
@@ -90,17 +134,9 @@ namespace BattleArena
         private void Update()
         {
            
-            AttackRequest(ref player, goblin);
-            AttackRequest(ref player, orc);
-            AttackRequest(ref player, dragon);
-
-            
-
-           
-            
-
-
-
+            BattleLoop(ref player, goblin);
+            BattleLoop(ref player, orc);
+            BattleLoop(ref player, dragon);
 
         }
         private void End()
@@ -124,7 +160,7 @@ namespace BattleArena
         /// <summary>
         /// Battle Loop for the main game
         /// </summary>
-        private void AttackRequest(ref Player player, Enemy enemy)
+        private void BattleLoop(ref Player player, Enemy enemy)
         {
             bool dead = false;
 
@@ -144,6 +180,7 @@ namespace BattleArena
                 {
                     player.Heal(5);
                 }
+              
                 int attack2 = GetInput("Next", "Attack", "Heal");
                 if (attack2 == 1)
                 {
@@ -153,6 +190,7 @@ namespace BattleArena
                 {
                     player.Heal(5);
                 }
+
                 int attack3 = GetInput("Next", "Attack", "Heal");
                 if (attack3 == 1)
                 {
@@ -202,6 +240,30 @@ namespace BattleArena
                 }
 
             }
+
+        }
+        /// <summary>
+        /// Function to execute player input for 3 choices
+        /// </summary>
+        private void AttackRequest(ref Player player, Enemy enemy)
+        {
+            int attack = GetInput("Will you Attack, Heal, or Use Item", "Attack", "Heal", "Use Item");
+            if (attack == 1)
+            {
+                player.Attack(enemy);
+
+            }
+            else if (attack == 2)
+            {
+                player.Heal(10);
+            
+            }  
+            else if(attack == 3)
+            {
+
+
+            }
+          
 
         }
         private void BattleResults(ref Player player, Enemy enemy)

@@ -6,27 +6,21 @@ using System.Threading.Tasks;
 
 namespace BattleArena
 {
-    internal class Wand : Item
+    internal class Shield : Item
     {
-       
-        public Wand(string name, float power, float armor,float maxuses, int value, string discription) : base(name, power, armor,maxuses, value, discription)
+        public Shield(string name, float power, float armor, float maxuses, int value, string discription) : base(name, power, armor, maxuses, value, discription)
         {
-            
-        }
 
+        }
         /// <summary>
-        /// Wand affect adds more damage to player
+        /// Shield affects player armor
         /// </summary>
+     
         public override float ItemAffect(float affect)
         {
-            
-            affect = Power;
+            affect = Armor;
             return affect;
-
         }
-
-
-
 
     }
 }

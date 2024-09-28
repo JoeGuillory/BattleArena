@@ -8,18 +8,22 @@ namespace BattleArena
 {
     internal class Player : Character
     {
+        
         public Player(string name, float maxHealth, float attackPower, float defensePower, int gold) : base (name, maxHealth, attackPower, defensePower, gold)
         {
 
         }
-      
-        public void Inventory(Item[] inventory)
+        
+       
+        public void UseItem(Item[] item)
         {
+          
 
-           
+
+
+
 
         }
-       
         public void PrintInventory(Item[] inventory)
         {
             for (int i = 0; i < inventory.Length; i++)
@@ -27,10 +31,7 @@ namespace BattleArena
                 Console.WriteLine(inventory[i].Name);
                 Console.WriteLine(inventory[i].Discription);
                 
-
-
             }
-
 
         }
         

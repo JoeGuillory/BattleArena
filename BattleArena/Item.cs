@@ -55,8 +55,8 @@ namespace BattleArena
            
 
         }
-
-        public abstract void ItemAffect();
+        
+        public abstract float ItemAffect(float affect);
        
         
 
