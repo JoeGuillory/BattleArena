@@ -16,7 +16,6 @@ namespace BattleArena
         Enemy goblin;
         Enemy orc;
         Enemy dragon;
-        Item[] maininventory = new Item[2];
         Item[] playerinventory = new Item[2];
         private bool _winner = false;
         
@@ -112,18 +111,19 @@ namespace BattleArena
 
 
         /// <summary>
-        /// Initial loop
+        /// Initial Function
         /// </summary>
         private void Start()
         {
-            Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
-            Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Shoots a fireball at enemy");
-            Shield dragonshield = new Shield("Dragon Shield", 0, 50, 3, 50, "Gives player more shield");
-            player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
+            Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Gives player more damage");
+            Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Gives player more damage");
+            Shield dragonshield = new Shield("Dragon Shield", 0, 10, 3, 50, "Gives player more defense");
+            player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 10, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             orc = new Enemy(name: "Orc", maxHealth: 25, attackPower: 6, defensePower: 2,gold: 20);
             dragon = new Enemy(name: "Dragon", maxHealth: 100, attackPower: 10, defensePower: 6,gold: 1000);
             Console.WriteLine("Welcome to the Arena");
+            Console.Read();
             player.PrintStats();
             Console.WriteLine();
             int awnser = GetInput("Would you like a Wand or a Sheild", "Wand", "Shield");
@@ -217,7 +217,9 @@ namespace BattleArena
 
                     for (int i = 0; i < 3; i++)
                     {
+                       int attacknumber = i + 1;
                         Console.Clear();
+                        Console.WriteLine( attacknumber + ". Attack");
                         player.PrintStats();
                         Console.WriteLine();
                         enemy.RandomAction(player);
@@ -296,28 +298,24 @@ namespace BattleArena
         private void PlayerTurn(ref Player player, ref Enemy enemy)
         {
 
+            for (int i = 0; i < 3; i++)
+            {
+                AttackRequest(ref player, ref enemy);
+                player.PrintStats();
+                Console.WriteLine();
+                enemy.PrintStats();
+                Console.ReadKey();
+                if (enemy.Health == 0)
+                {
+                    break;
+                }
 
-            AttackRequest(ref player, ref enemy);
-            player.PrintStats();
-            Console.WriteLine();
-            enemy.PrintStats();
-            Console.ReadKey();
-            AttackRequest(ref player, ref enemy);
-            player.PrintStats();
-            Console.WriteLine();
-            enemy.PrintStats();
-            Console.ReadKey();
-            AttackRequest(ref player, ref enemy);
-            player.PrintStats();
-            Console.WriteLine();
-            enemy.PrintStats();
-            Console.ReadKey();
-
-            
-
-
+            }
 
 
         }
+
+
+
     }
 }

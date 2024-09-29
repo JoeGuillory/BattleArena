@@ -23,6 +23,7 @@ namespace BattleArena
             {
                 player.AttackPower += Power;
                 Uses -= 1;
+                Console.WriteLine("Your attack power has increased by " + Power);
             }
             else if (Uses == 0)
             {

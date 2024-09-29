@@ -22,6 +22,7 @@ namespace BattleArena
             {
                 player.DefensePower += Armor;
                 Uses -= 1;
+                Console.WriteLine("Your defense has increased by " + Armor);
             }
             else if (Uses == 0)
             {
