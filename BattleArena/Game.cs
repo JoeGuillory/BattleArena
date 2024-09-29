@@ -149,20 +149,25 @@ namespace BattleArena
             BattleLoop(ref player, goblin);
             BattleLoop(ref player, orc);
             BattleLoop(ref player, dragon);
-            _winner = true;
+            if (player.Health != 0)
+            {
+                _winner = true;
+
+            }
             _gameOver = true;
         }
         private void End()
         {
-            if (_winner)
+            if (_winner == true)
             {
                 Console.Clear();
                 Console.WriteLine("Congratulations on beating the arena");
 
 
             }
-            if (!_winner)
+            if (_winner == false)
             {
+                Console.Clear();
                 Console.WriteLine("You are dead");
                 
             }
