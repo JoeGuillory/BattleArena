@@ -18,6 +18,7 @@ namespace BattleArena
         Enemy dragon;
         Item[] maininventory = new Item[2];
         Item[] playerinventory = new Item[2];
+        private bool _winner = false;
         
         /// <summary>
         /// Gets input for a 2 choice question
@@ -148,11 +149,23 @@ namespace BattleArena
             BattleLoop(ref player, goblin);
             BattleLoop(ref player, orc);
             BattleLoop(ref player, dragon);
-
+            _winner = true;
+            _gameOver = true;
         }
         private void End()
         {
-            Console.WriteLine("You are dead");
+            if (_winner)
+            {
+                Console.Clear();
+                Console.WriteLine("Congratulations on beating the arena");
+
+
+            }
+            if (!_winner)
+            {
+                Console.WriteLine("You are dead");
+                
+            }
 
         }
 
@@ -181,18 +194,8 @@ namespace BattleArena
             Console.ReadKey();
             while (!dead)
             {
-
-                AttackRequest(ref player, ref enemy);
-                AttackRequest(ref player, ref enemy);
-                AttackRequest(ref player, ref enemy);
-                enemy.PrintStats();
-                Console.ReadKey();
-                
-                // After Turn Stats
-                player.PrintStats();
-                Console.WriteLine();
-                enemy.PrintStats();
-                Console.ReadKey();
+                // Player attacks
+                PlayerTurn(ref player, ref enemy);
                 // Enemy fights back
                 if (enemy.Health != 0)
                 {
@@ -209,6 +212,7 @@ namespace BattleArena
 
                     }
                 }
+                // when the enemy dies 
                 else if (enemy.Health == 0)
                 {
                     Console.Clear();
@@ -218,6 +222,7 @@ namespace BattleArena
                     Console.ReadKey();
                     Console.Clear();
                 }
+                //when the player dies
                 if(player.Health == 0)
                 {
                     Console.Clear();
@@ -248,12 +253,17 @@ namespace BattleArena
             }  
             else if(attack == 3)
             {
-                player.UseItem(playerinventory);
-
+                player.UseItem(playerinventory, ref player);
+                
+                
             }
           
+           
 
         }
+        /// <summary>
+        /// Displays the Final results and pays the player
+        /// </summary>
         private void BattleResults(ref Player player, Enemy enemy)
         {
             Console.WriteLine("Congratulations on defeating " + enemy.Name);
@@ -262,6 +272,37 @@ namespace BattleArena
             Console.WriteLine("You got " + enemy.Gold + " Gold");
             Console.WriteLine();
             player.PrintStats();
+        }
+        /// <summary>
+        /// Player Attacks
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="enemy"></param>
+        private void PlayerTurn(ref Player player, ref Enemy enemy)
+        {
+
+
+            AttackRequest(ref player, ref enemy);
+            player.PrintStats();
+            Console.WriteLine();
+            enemy.PrintStats();
+            Console.ReadKey();
+            AttackRequest(ref player, ref enemy);
+            player.PrintStats();
+            Console.WriteLine();
+            enemy.PrintStats();
+            Console.ReadKey();
+            AttackRequest(ref player, ref enemy);
+            player.PrintStats();
+            Console.WriteLine();
+            enemy.PrintStats();
+            Console.ReadKey();
+
+            
+
+
+
+
         }
     }
 }

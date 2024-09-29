@@ -19,7 +19,16 @@ namespace BattleArena
         /// </summary>
         public override void ItemAffect(ref Player player)
         {
-            player.AttackPower += Power;
+            if(Uses != 0)
+            {
+                player.AttackPower += Power;
+                Uses -= 1;
+            }
+            else if (Uses == 0)
+            {
+                Console.WriteLine("Out of uses");
+
+            }
             
            
         }

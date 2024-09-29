@@ -15,9 +15,9 @@ namespace BattleArena
         }
         
        
-        public void UseItem(Item[] item)
+        public void UseItem(Item[] item,ref Player player)
         {
-            PrintInventory(item);
+            item[0].ItemAffect(ref player);
 
 
 

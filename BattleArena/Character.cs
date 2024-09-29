@@ -28,8 +28,8 @@ namespace BattleArena
         }
         
        
-        public float AttackPower { get { return _attackPower; } set { _attackPower += value; } }
-        public float DefensePower { get { return _defensePower; } set { _defensePower += value;} }
+        public float AttackPower { get { return _attackPower; } set { _attackPower = value; } }
+        public float DefensePower { get { return _defensePower; } set { _defensePower = value;} }
         public string Name { get { return _name; } }
         public float MaxHealth { get { return _maxHealth; } }
         public int Gold { get { return _gold; } set { _gold = Math.Max(0, value); } }

@@ -18,7 +18,16 @@ namespace BattleArena
      
         public override void ItemAffect(ref Player player)
         {
-            player.DefensePower += Armor;
+            if (Uses != 0)
+            {
+                player.DefensePower += Armor;
+                Uses -= 1;
+            }
+            else if (Uses == 0)
+            {
+                Console.WriteLine("Out of uses");
+
+            }
         }
 
     }
