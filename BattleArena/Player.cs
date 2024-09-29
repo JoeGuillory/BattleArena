@@ -20,18 +20,12 @@ namespace BattleArena
             item[0].ItemAffect(ref player);
 
 
-
-
-
         }
         public void PrintInventory(Item[] inventory)
         {
             
-            
                 Console.WriteLine(inventory[0].Name);
                 Console.WriteLine(inventory[0].Discription);
-                
-            
 
         }
         

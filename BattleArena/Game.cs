@@ -111,7 +111,9 @@ namespace BattleArena
         }
 
 
-
+        /// <summary>
+        /// Initial loop
+        /// </summary>
         private void Start()
         {
             Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
@@ -143,6 +145,9 @@ namespace BattleArena
            
             
         }
+        /// <summary>
+        /// Main gameplay loop
+        /// </summary>
         private void Update()
         {
            
@@ -156,6 +161,9 @@ namespace BattleArena
             }
             _gameOver = true;
         }
+        /// <summary>
+        /// End of the game
+        /// </summary>
         private void End()
         {
             if (_winner == true)
@@ -175,7 +183,9 @@ namespace BattleArena
         }
 
 
-
+        /// <summary>
+        /// Main Game loop function
+        /// </summary>
         public void Run()
         {
             Start();
