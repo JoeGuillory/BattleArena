@@ -17,12 +17,11 @@ namespace BattleArena
         /// <summary>
         /// Wand affect adds more damage to player
         /// </summary>
-        public override float ItemAffect(float affect)
+        public override void ItemAffect(ref Player player)
         {
+            player.AttackPower += Power;
             
-            affect = Power;
-            return affect;
-
+           
         }
 
 

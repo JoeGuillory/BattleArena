@@ -17,7 +17,7 @@ namespace BattleArena
        
         public void UseItem(Item[] item)
         {
-          
+            PrintInventory(item);
 
 
 
@@ -26,12 +26,12 @@ namespace BattleArena
         }
         public void PrintInventory(Item[] inventory)
         {
-            for (int i = 0; i < inventory.Length; i++)
-            {
-                Console.WriteLine(inventory[i].Name);
-                Console.WriteLine(inventory[i].Discription);
+            
+            
+                Console.WriteLine(inventory[0].Name);
+                Console.WriteLine(inventory[0].Discription);
                 
-            }
+            
 
         }
         

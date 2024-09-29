@@ -68,13 +68,14 @@ namespace BattleArena
         {
             ConsoleKeyInfo key;
             int inputRecieved = 0;
-            while (inputRecieved != 1 && inputRecieved != 2)
+            while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved !=3)
             {
                 // Print option
                 Console.Clear();
                 Console.WriteLine(description);
                 Console.WriteLine("1. " + option1);
                 Console.WriteLine("2. " + option2);
+                Console.WriteLine("3. " + option3);
                 Console.Write("> ");
                 // Get input from player
                 key = Console.ReadKey();
@@ -114,18 +115,28 @@ namespace BattleArena
         {
             Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Shoots ice spike at enemy");
             Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Shoots a fireball at enemy");
-           
+            Shield dragonshield = new Shield("Dragon Shield", 0, 50, 3, 50, "Gives player more shield");
             player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 5, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             orc = new Enemy(name: "Orc", maxHealth: 25, attackPower: 6, defensePower: 2,gold: 20);
-            dragon = new Enemy(name: "Dragon", maxHealth: 200, attackPower: 20, defensePower: 10,gold: 1000);
+            dragon = new Enemy(name: "Dragon", maxHealth: 100, attackPower: 10, defensePower: 6,gold: 1000);
             Console.WriteLine("Welcome to the Arena");
             player.PrintStats();
             Console.WriteLine();
-            
+            int awnser = GetInput("Would you like a Wand or a Sheild", "Wand", "Shield");
+            if (awnser == 1)
+            {
+                Console.WriteLine("You got a wand");
+                playerinventory[0] = icewand;
+            }
+            else if (awnser == 2)
+            {
+                Console.WriteLine("You got a shield");
+                playerinventory[0] = dragonshield;
+            }
             player.PrintInventory(playerinventory);
            
-            Console.ReadKey();
+            
             Console.WriteLine();
             Console.ReadKey();
            
@@ -170,36 +181,13 @@ namespace BattleArena
             Console.ReadKey();
             while (!dead)
             {
-                Console.WriteLine("Choose three times.");
-                int attack1 = GetInput("Do you want to Attack or Heal", "Attack", "Heal");
-                if (attack1 == 1)
-                {
-                    player.Attack(enemy);
-                }
-                else if (attack1 == 2)
-                {
-                    player.Heal(5);
-                }
-              
-                int attack2 = GetInput("Next", "Attack", "Heal");
-                if (attack2 == 1)
-                {
-                    player.Attack(enemy);
-                }
-                else if (attack2 == 2)
-                {
-                    player.Heal(5);
-                }
 
-                int attack3 = GetInput("Next", "Attack", "Heal");
-                if (attack3 == 1)
-                {
-                    player.Attack(enemy);
-                }
-                else if (attack3 == 2)
-                {
-                    player.Heal(5);
-                }
+                AttackRequest(ref player, ref enemy);
+                AttackRequest(ref player, ref enemy);
+                AttackRequest(ref player, ref enemy);
+                enemy.PrintStats();
+                Console.ReadKey();
+                
                 // After Turn Stats
                 player.PrintStats();
                 Console.WriteLine();
@@ -245,7 +233,7 @@ namespace BattleArena
         /// <summary>
         /// Function to execute player input for 3 choices
         /// </summary>
-        private void AttackRequest(ref Player player, Enemy enemy)
+        private void AttackRequest(ref Player player, ref Enemy enemy)
         {
             int attack = GetInput("Will you Attack, Heal, or Use Item", "Attack", "Heal", "Use Item");
             if (attack == 1)
@@ -260,7 +248,7 @@ namespace BattleArena
             }  
             else if(attack == 3)
             {
-
+                player.UseItem(playerinventory);
 
             }
           

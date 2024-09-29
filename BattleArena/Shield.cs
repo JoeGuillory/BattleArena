@@ -16,10 +16,9 @@ namespace BattleArena
         /// Shield affects player armor
         /// </summary>
      
-        public override float ItemAffect(float affect)
+        public override void ItemAffect(ref Player player)
         {
-            affect = Armor;
-            return affect;
+            player.DefensePower += Armor;
         }
 
     }
