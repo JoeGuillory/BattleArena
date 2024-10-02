@@ -16,7 +16,7 @@ namespace BattleArena
         Enemy goblin;
         Enemy orc;
         Enemy dragon;
-        Item[] playerinventory = new Item[2];
+        Item[] playerinventory = new Item[5];
         private bool _winner = false;
         
         /// <summary>
@@ -115,9 +115,8 @@ namespace BattleArena
         /// </summary>
         private void Start()
         {
-            Wand icewand = new Wand("Ice Wand", 10, 0, 3, 10, "Gives player more damage");
-            Wand firewand = new Wand("Fire Wand", 10, 0, 3, 10, "Gives player more damage");
-            Shield dragonshield = new Shield("Dragon Shield", 0, 10, 3, 50, "Gives player more defense");
+            Wand basicwand = new Wand("Wooden Wand", 10, 0, 3, 10, "Gives player more damage");
+            Shield basicshield = new Shield("Wooden Shield", 0, 10, 3, 50, "Gives player more defense");
             player = new Player(name: "Scarletta", maxHealth: 25, attackPower: 10, defensePower: 5, gold: 5);
             goblin = new Enemy(name: "Goblin", maxHealth: 10, attackPower: 3, defensePower: 1,gold: 10);
             orc = new Enemy(name: "Orc", maxHealth: 25, attackPower: 6, defensePower: 2,gold: 20);
@@ -129,13 +128,13 @@ namespace BattleArena
             int awnser = GetInput("Would you like a Wand or a Sheild", "Wand", "Shield");
             if (awnser == 1)
             {
-                Console.WriteLine("You got a wand");
-                playerinventory[0] = icewand;
+                playerinventory[0] = basicwand;
+                Console.WriteLine("You got a " + playerinventory[0].Name);
             }
             else if (awnser == 2)
             {
-                Console.WriteLine("You got a shield");
-                playerinventory[0] = dragonshield;
+                playerinventory[0] = basicshield;
+                Console.WriteLine("You got a " + playerinventory[0].Name);
             }
             player.PrintInventory(playerinventory);
            
