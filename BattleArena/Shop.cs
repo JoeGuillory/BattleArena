@@ -9,16 +9,19 @@ namespace BattleArena
     internal class Shop
     {
 
-        private void  StoreStart()
-        {
-
-
-
-
-
-
-
+        private void StoreStart()
+        { 
+        
+        
+        
+        
+        
         }
+
+       
+
+
+    
         public void Store(ref Player player)
         {
             StoreStart();
